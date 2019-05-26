@@ -20,6 +20,8 @@ class HomeWeather extends Component {
   componentWillMount(){
     this.setState({
       selectedCityId: this.props.cityId
+      //index.js에서 cityId 로 받은값들.
+
     });
   }
 
@@ -43,6 +45,7 @@ class HomeWeather extends Component {
   }
 
   render() {
+
     const { weather } = this.state;
     const selectedCityId = this.state.selectedCityId;
 
@@ -90,7 +93,11 @@ class HomeWeather extends Component {
 
     return (
       <div>
-        <CitySelector onSelect={(selectedCityId) => this.setState({selectedCityId})}/>
+        <CitySelector onSelect={(selectedCityId) =>{
+            this.setState({selectedCityId});
+            this.fetchSelectedCityWeather(this.state.selectedCityId);
+          }
+        }/>
         <div className="jumbotron">
           <h2 id="CityName">{selectedCityId}</h2>
           <p className="lead">{weatherDesc}</p>
